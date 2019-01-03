@@ -40,7 +40,7 @@ class ListProductPlugin
             if ($column[1] == 'min_price') {
                 $newPricePart = [
                     'catalogrule_product_price',
-                    new \Zend_Db_Expr('if(`catalogrule_product_price`.`rule_price` is not null, `catalogrule_product_price`.`rule_price`, `price_index`.`min_price`)'),
+                    new \Zend_Db_Expr('if(`catalogrule_product_price`.`rule_price` is not null and `catalogrule_product_price`.`rule_price` < `price_index`.`min_price`, `catalogrule_product_price`.`rule_price`, `price_index`.`min_price`)'),
                     'min_price'
                 ];
 
@@ -50,7 +50,7 @@ class ListProductPlugin
             if ($column[1] == 'max_price') {
                 $newPricePart = [
                     'catalogrule_product_price',
-                    new \Zend_Db_Expr('if(`catalogrule_product_price`.`rule_price` is not null, `catalogrule_product_price`.`rule_price`, `price_index`.`max_price`)'),
+                    new \Zend_Db_Expr('if(`catalogrule_product_price`.`rule_price` is not null and `catalogrule_product_price`.`rule_price` < `price_index`.`max_price`, `catalogrule_product_price`.`rule_price`, `price_index`.`max_price`)'),
                     'max_price'
                 ];
 
