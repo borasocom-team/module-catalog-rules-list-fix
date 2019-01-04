@@ -71,6 +71,7 @@ class ListProductPlugin
         }
         $resultSelect->setPart('columns', $columns);
 
+        $result->clear();
         return $result;
     }
 
